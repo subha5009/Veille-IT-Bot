@@ -21,6 +21,9 @@ const cloudChannel = process.env.CLOUD_CHANNEL;
 const iaChannel = process.env.IA_CHANNEL;
 const devChannel = process.env.DEV_CHANNEL;
 
+// Memory to store last posted link per feed
+const lastPostedLinks = {};
+
 client.once('ready', () => {
   console.log(`✅ Connected as ${client.user.tag}`);
 
@@ -66,8 +69,16 @@ async function postITNews() {
       const feed = await parser.parseURL(feedInfo.url);
       const latest = feed.items[0];
 
-      const channel = await client.channels.fetch(feedInfo.channelId);
-      channel.send(`📰 **${feedInfo.topic} - Actu du jour**\n**Titre:** ${latest.title}\n**Lien:** ${latest.link}`);
+      // Check if this article is already posted
+      if (lastPostedLinks[feedInfo.url] !== latest.link) {
+        const channel = await client.channels.fetch(feedInfo.channelId);
+        channel.send(`📰 **${feedInfo.topic} - Actu du jour**\n**Titre:** ${latest.title}\n**Lien:** ${latest.link}`);
+
+        // Update last posted link
+        lastPostedLinks[feedInfo.url] = latest.link;
+      } else {
+        console.log(`ℹ️ No new article for ${feedInfo.topic} (${feedInfo.url})`);
+      }
     } catch (error) {
       console.error(`❌ Error fetching ${feedInfo.topic} news from ${feedInfo.url}:`, error);
     }
