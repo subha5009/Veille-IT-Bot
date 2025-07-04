@@ -14,7 +14,7 @@ const client = new Client({
 });
 
 const token = process.env.TOKEN;
-
+client.login(token);
 // Channel IDs from .env
 const cybersécuritéChannel = process.env.CYBERSEC_CHANNEL;
 const cloudChannel = process.env.CLOUD_CHANNEL;
