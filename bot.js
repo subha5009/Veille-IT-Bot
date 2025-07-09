@@ -46,6 +46,7 @@ async function postITNews() {
     // Cybersécurité
     { url: 'https://www.01net.com/tag/cybersecurite/feed/', channelId: cybersécuritéChannel, topic: 'Cybersécurité' },
     { url: 'https://cyber.gouv.fr/actualites/feed', channelId: cybersécuritéChannel, topic: 'Cybersécurité' },
+    { url: 'https://cyber.gouv.fr/feed', channelId: cybersécuritéChannel, topic: 'Cybersécurité' },
     { url: 'https://www.lemagit.fr/rss/ContentSyndication.xml', channelId: cybersécuritéChannel, topic: 'Cybersécurité' },
     { url: 'https://www.silicon.fr/rss/toutelinfo', channelId: cybersécuritéChannel, topic: 'Cybersécurité' },
     { url: 'https://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml', channelId: cybersécuritéChannel, topic: 'Cybersécurité' },
